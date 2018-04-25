@@ -1,13 +1,13 @@
 {
   "name": "smoresKit",
-  "version": "1.0.0",
-  "description": "",
+  "version": "32.2.0",
+  "description": "SmoresKit API",
   "main": "smoreskit.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["smoreskit", "smores","api"],
+  "author": "Michael Chenetz",
   "license": "ISC",
   "engines": {
     "node": "8.9.4"

@@ -12,7 +12,10 @@ server.use(restify.plugins.bodyParser({
 server.use(restify.plugins.acceptParser(server.acceptable));
 
 var muuid = "";
-var baseurl = '/smoreskit/api/v32.1/roast';
+global.turn = 1;
+global.marshName = '';
+
+var baseurl = '/smoreskit/api/v32.2/roast';
 
 server.get(baseurl, function(req, res, next) {
     res.send('Smoreskit v32.1');
@@ -44,6 +47,7 @@ server.post(baseurl + '/new',
             code: 200,
             name: req.body.name
         };
+        marshName = req.body.name;
         return next();
     },
     function(req, res, next) {
@@ -52,18 +56,20 @@ server.post(baseurl + '/new',
     }
 );
 
-server.put('/roast/turn',
+server.put(baseurl + '/turn',
     function(req, res, next) {
-        muuid = uuidv1();
-        req.someData = {
-            action: 'Add Marshmallow',
-            id: muuid,
-            code: 200 };
-        return next();
-    },
-    function(req, res, next) {
-        res.send(req.params.id);
-        return next();
+
+            rotation = (360 / global.turn);
+            global.turn = global.turn + 1;
+            if (global.turn > 4) {
+                global.turn = 1;
+            }
+            res.send({
+                id: muuid,
+                rotation: rotation.toString()
+
+            });
+            return next();
     }
 );
 server.listen(8080, function() {
