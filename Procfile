@@ -1,1 +1,1 @@
-web: nodejs smoreskit.js
+web: node smoreskit.js
