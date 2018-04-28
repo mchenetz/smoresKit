@@ -44,10 +44,8 @@ server.post(baseurl + '/new',
         req.someData = {
             action: 'Add Marshmallow',
             id: muuid,
-            code: 200,
-            name: req.body.name
+            code: 200
         };
-        marshName = req.body.name;
         return next();
     },
     function(req, res, next) {
