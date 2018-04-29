@@ -22,7 +22,12 @@ server.get(baseurl, function(req, res, next) {
     return next();
 });
 
-server.get(baseurl + '/marshmallow', function (req,res, next) {
+server.get(baseurl + '/marshmallow/:guid', function (req,res, next) {
+    for (parts in req.params){
+        if (req.params.hasOwnProperty('guid')){
+            muuid = req.params.guid;
+        }
+    }
     if (muuid==="") {
         res.send({
             error: 'No Marshmallow found!',
@@ -43,7 +48,7 @@ server.post(baseurl + '/new',
         muuid = uuidv1();
         req.someData = {
             action: 'Add Marshmallow',
-            id: muuid,
+            id: muuid ,
             code: 200
         };
         return next();
@@ -61,6 +66,12 @@ server.put(baseurl + '/turn',
             global.turn = global.turn + 1;
             if (global.turn > 4) {
                 global.turn = 1;
+            }
+
+            for (parts in req.body){
+                if (req.body.hasOwnProperty('id')){
+                    muuid = req.body.id;
+                }
             }
             res.send({
                 id: muuid,
